@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Modern colourful cloud and infrastructure portfolio website." />
+  <title>Joseph Alabi | Cloud & Infrastructure Engineer</title>
+
+  <style>
+    :root {
+      --bg: #08111f;
+      --bg-soft: #101d33;
+      --card: rgba(255,255,255,0.08);
+      --text: #f8fbff;
+      --muted: #b7c5d8;
+      --primary: #6c63ff;
+      --secondary: #00d4ff;
+      --accent: #ff5ca8;
+      --green: #34e89e;
+      --yellow: #ffd166;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(108, 99, 255, .22), transparent 25%),
+        radial-gradient(circle at 85% 20%, rgba(0, 212, 255, .18), transparent 25%),
+        radial-gradient(circle at 70% 85%, rgba(255, 92, 168, .14), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 17, 31, .72);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: .5px;
+      font-size: 1.15rem;
+    }
+
+    .logo span {
+      background: linear-gradient(90deg, var(--secondary), var(--accent), var(--yellow));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .95rem;
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 50px;
+      padding: 70px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(52,232,158,.12);
+      border: 1px solid rgba(52,232,158,.28);
+      color: #92ffd0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+      font-size: .9rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: .96;
+      margin-bottom: 24px;
+      letter-spacing: -3px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--primary),
+        var(--accent),
+        var(--yellow)
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 12px 30px rgba(108,99,255,.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.06);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.04)
+      );
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(0,212,255,.16);
+      right: -50px;
+      top: -50px;
+      filter: blur(10px);
+    }
+
+    .terminal {
+      position: relative;
+      background: #050a12;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .terminal-top {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot:nth-child(1) {
+      background: #ff5f56;
+    }
+
+    .dot:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    .dot:nth-child(3) {
+      background: #27c93f;
+    }
+
+    .terminal pre {
+      padding: 22px;
+      color: #97f8c5;
+      white-space: pre-wrap;
+      font-family: "Courier New", monospace;
+      font-size: .9rem;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 22px;
+      padding: 24px;
+      transition: .25s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,212,255,.35);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      font-size: 1.45rem;
+      background: linear-gradient(
+        135deg,
+        rgba(108,99,255,.3),
+        rgba(0,212,255,.25)
+      );
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.09);
+      color: #dde8f7;
+    }
+
+    .project-card {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      right: -70px;
+      bottom: -70px;
+      background: linear-gradient(
+        135deg,
+        rgba(255,92,168,.3),
+        rgba(0,212,255,.2)
+      );
+      filter: blur(4px);
+    }
+
+    .project-tag {
+      color: #9edcff;
+      font-size: .84rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 10px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 26px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      background: linear-gradient(90deg, var(--green), var(--secondary));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .contact {
+      text-align: center;
+      border-radius: 30px;
+      padding: 50px 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(108,99,255,.25),
+          rgba(255,92,168,.18)
+        ),
+        rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 580px) {
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+
+      <a class="logo" href="#home">
+        JOSEPH<span>.CLOUD</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <main>
+
+    <section id="home" class="container hero">
+
+      <div>
+
+        <div class="badge">
+          ● Available for Infrastructure & Cloud Opportunities
+        </div>
+
+        <h1>
+          Build. Secure.<br>
+          <span class="gradient-text">Scale.</span>
+        </h1>
+
+        <p>
+          I design, manage, automate, and secure modern IT infrastructure
+          across Microsoft Azure, Microsoft 365, Windows Server,
+          networking, virtualization, identity, backup, and disaster
+          recovery environments.
+        </p>
+
+        <div class="actions">
+
+          <a class="btn btn-primary" href="#projects">
+            View My Projects
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/jeolab10"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub Profile
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <div class="terminal">
+
+          <div class="terminal-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <pre>
+$ az account show
+
+{
+  "role": "Cloud Engineer",
+  "platform": "Microsoft Azure",
+  "focus": [
+    "Infrastructure",
+    "Identity",
+    "Automation",
+    "Security",
+    "Disaster Recovery"
+  ],
+  "status": "Ready to deploy"
+}
+          </pre>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="about">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          About Me
+        </h2>
+
+        <p class="section-subtitle">
+          Infrastructure and cloud-focused IT professional with experience
+          supporting enterprise environments and building practical cloud
+          engineering solutions.
+        </p>
+
+        <div class="stats">
+
+          <div class="stat">
+            <strong>10+</strong>
+            Years IT Experience
+          </div>
+
+          <div class="stat">
+            <strong>Azure</strong>
+            Cloud Platform
+          </div>
+
+          <div class="stat">
+            <strong>M365</strong>
+            Administration
+          </div>
+
+          <div class="stat">
+            <strong>24/7</strong>
+            Infrastructure Mindset
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="skills">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Technical Skills
+        </h2>
+
+        <p class="section-subtitle">
+          Technologies I use across cloud, infrastructure, identity,
+          networking, support, automation, monitoring, and disaster recovery.
+        </p>
+
+        <div class="skills">
+
+          <span class="skill">Microsoft Azure</span>
+          <span class="skill">Microsoft 365</span>
+          <span class="skill">Entra ID</span>
+          <span class="skill">Windows Server</span>
+          <span class="skill">Active Directory</span>
+          <span class="skill">PowerShell</span>
+          <span class="skill">Azure CLI</span>
+          <span class="skill">Terraform</span>
+          <span class="skill">GitHub Actions</span>
+          <span class="skill">VMware</span>
+          <span class="skill">Hyper-V</span>
+          <span class="skill">Networking</span>
+          <span class="skill">DNS / DHCP</span>
+          <span class="skill">Azure Site Recovery</span>
+          <span class="skill">Backup & DR</span>
+          <span class="skill">Monitoring</span>
+          <span class="skill">IT Support</span>
+          <span class="skill">Cybersecurity</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="projects">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Featured Projects
+        </h2>
+
+        <p class="section-subtitle">
+          Hands-on infrastructure projects demonstrating real cloud
+          architecture, automation, resiliency, and operational skills.
+        </p>
+
+        <div class="grid">
+
+
+          <article class="card project-card">
+
+            <div>
+
+              <div class="project-tag">
+                Azure • Disaster Recovery
+              </div>
+
+              <h3>
+                Azure Site Recovery Architecture
+              </h3>
+
+              <p>
+                Designed a cross-region disaster recovery solution using
+                Azure Site Recovery, Recovery Services Vault, VNets,
+                replication policies, recovery networking, and failover planning.
+              </p>
+
+            </div>
+
+            <a
+              href="https://github.com/jeolab10/azure-disaster-recovery-powershell"
+              target="_blank"
+              rel="noopener"
+            >
+              Explore project →
+            </a>
+
+          </article>
+
+
+          <article class="card project-card">
+
+            <div>
+
+              <div class="project-tag">
+                Terraform • Azure
+              </div>
+
+              <h3>
+                VM Scale Set Deployment
+              </h3>
+
+              <p>
+                Infrastructure-as-Code deployment of scalable Azure compute
+                with VM Scale Sets, networking, load balancing, monitoring,
+                and repeatable Terraform configuration.
+              </p>
+
+            </div>
+
+            <a
+              href="https://github.com/jeolab10/azure-vmss-terraform"
+              target="_blank"
+              rel="noopener"
+            >
+              Explore project →
+            </a>
+
+          </article>
+
+
+          <article class="card project-card">
+
+            <div>
+
+              <div class="project-tag">
+                Cloud Architecture
+              </div>
+
+              <h3>
+                Enterprise Landing Zone
+              </h3>
+
+              <p>
+                Reference design for secure Azure subscriptions,
+                identity, networking, governance, policy, monitoring,
+                and workload segmentation.
+              </p>
+
+            </div>
+
+            <a href="#contact">
+              Discuss architecture →
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section>
+
+      <div class="container">
+
+        <h2 class="section-title">
+          What I Work On
+        </h2>
+
+        <div class="grid">
+
+
+          <div class="card">
+
+            <div class="icon">
+              ☁️
+            </div>
+
+            <h3>
+              Cloud Infrastructure
+            </h3>
+
+            <p>
+              Azure compute, storage, networking, governance,
+              monitoring and resilient architecture.
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="icon">
+              🔐
+            </div>
+
+            <h3>
+              Identity & Security
+            </h3>
+
+            <p>
+              Microsoft Entra ID, RBAC, MFA, Conditional Access
+              and least-privilege access models.
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="icon">
+              ⚙️
+            </div>
+
+            <h3>
+              Automation
+            </h3>
+
+            <p>
+              PowerShell, Azure CLI, Terraform, Git and CI/CD
+              workflows for repeatable operations.
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="icon">
+              🖥️
+            </div>
+
+            <h3>
+              Systems Administration
+            </h3>
+
+            <p>
+              Windows Server, Active Directory, Group Policy,
+              patching, monitoring and troubleshooting.
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="icon">
+              🌐
+            </div>
+
+            <h3>
+              Networking
+            </h3>
+
+            <p>
+              VNets, subnets, NSGs, routing, VPN, firewalls,
+              DNS, DHCP and hybrid connectivity.
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="icon">
+              🛡️
+            </div>
+
+            <h3>
+              Business Continuity
+            </h3>
+
+            <p>
+              Backup strategies, replication, disaster recovery,
+              failover testing and recovery planning.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="contact">
+
+          <h2 class="section-title">
+            Let’s Build Reliable Infrastructure
+          </h2>
+
+          <p
+            class="section-subtitle"
+            style="margin-left:auto; margin-right:auto;"
+          >
+            Interested in cloud, infrastructure, systems administration,
+            or technology projects? Connect with me through GitHub
+            or LinkedIn.
+          </p>
+
+
+          <div
+            class="actions"
+            style="justify-content:center;"
+          >
+
+            <a
+              class="btn btn-primary"
+              href="https://github.com/jeolab10"
+              target="_blank"
+              rel="noopener"
+            >
+              Visit GitHub
+            </a>
+
+            <a
+              class="btn btn-secondary"
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container">
+
+      © <span id="year"></span> Joseph Alabi.
+      Built with HTML, CSS & JavaScript and hosted on GitHub Pages.
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
